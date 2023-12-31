@@ -4,6 +4,10 @@
 
 # Panel Elaboración de Citas
 
+[TOC]
+
+
+
 ## Introducción
 
 Este proyecto tiene la finalidad de administrar (elaborar, visualizar, editar y eliminar ) una cita, en este caso de un consultorio, de un manera sencilla y facil de entender.
@@ -11,6 +15,7 @@ Este proyecto tiene la finalidad de administrar (elaborar, visualizar, editar y 
 Esta elaborado con la biblioteca de JavaScript React y la herramienta de desarrollo Vite.js.
 
 📝 Nota: Este proyecto guarda la información el LocalStorage. Solo Front-end.
+
 
 ## Tecnologías Utilzadas
 
@@ -22,6 +27,7 @@ Esta elaborado con la biblioteca de JavaScript React y la herramienta de desarro
 :[!Note] 
 Para más información consultar el archivo package.json de este proyecto.
 
+
 ## Instalación 
 
 1. Clonación de proyecto:
@@ -32,11 +38,14 @@ Para más información consultar el archivo package.json de este proyecto.
 
 `$ npm install`
 
+
 ## Correr proyecto
 
 - En terminal posicionada en el proyecto:
 
 `npm run dev`
+
+
 
 
 ## Otro
