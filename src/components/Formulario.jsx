@@ -4,6 +4,7 @@ import Error from "./Error";
 import { RiUser3Line, RiMailSendLine, RiBaiduLine } from "react-icons/ri";
 
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
+
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
     const [mail, setMail] = useState('');
@@ -11,7 +12,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     const [sintomas, setSintomas] = useState('');
     const [hora, setHora] = useState('');
 
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({});
 
 
     // DEtecta el state del paciente. Editar y rellenar el form
@@ -37,20 +38,53 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     }
 
     // console.log('Nombre:', nombre);
-    const handleSubmit = (e) => {
+     const handleSubmit = (e) => {
+    //  const onSubmit = handleSubmit((e) => {
         e.preventDefault();
 
         console.log('Enviando Formulario...');
 
         //Validación de formulario:
-        if ([nombre, propietario, mail, alta, hora, sintomas].includes('') || sintomas.length > 120) {
+        if ([nombre, propietario, mail, alta, hora, sintomas].includes('')) {
+            console.log('Todos los campos son obligatorios');
             //alert('Hay al menos un campo vacio');
-            setError(true);
+            setError({
+                msg: 'Todos los campos son obligatorios',     
+                err: true,
+            })
+            // setError(true);
             return;
         }
+        if (sintomas.length > 120) {
+            setError({
+                msg: 'Revasó el númeró máximo de caracteres en sintomas',     
+                err: true,
+            })
+            // setError(true);
+            return;
+        }
+        if (nombre.length > 30) {
+            setError({
+                msg: 'Nombre mascota max. de 30 caracteres',     
+                err: true,
+            })
+            return;
+        }
+        if (propietario.length > 30) {
+            setError({
+                msg: 'Nombre propietario max. de 30 caracteres',     
+                err: true,
+            })
+            return;
+        }
+     
+        console.log( paciente.hora, paciente.alta); //Fecha y hora agregada
+
 
         console.log('Todos los campos llenos');
         setError(false);
+
+
 
         // Objeto de Pacientes
         const objetoPaciente = {
@@ -93,6 +127,8 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
     }
 
+    const { msg } = error
+    console.log( ...pacientes);
 
     return (
         <div className="md:w-1/2 lg:w-2/5 mx-3 mb-5">
@@ -105,13 +141,14 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             </p>
 
             <form
-                className="bg-white shadow-md rounded-lg py-10 px-5 "
+                className="bg-white shadow-md rounded-lg pb-10 pt-5 px-5 "
                 onSubmit={handleSubmit}
             >
+                <div className=" flex justify-center pb-2">
+                {msg && <Error error={error}/>}
+                </div>
 
-                {error && <Error> <p>Todos los campos son obligatorios</p></Error>}
-
-                <div className="mb-5">
+                <div className="mb-5 mt-5">
                     <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">
                         Nombre Mascota
                     </label>
@@ -119,14 +156,17 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
 
                         <RiBaiduLine className="text-gray-500 absolute top-1/2 -translate-y-1/3 left-3" />
                         <input
+                            // required
                             id="mascota"
                             type="text"
+                            maxLength={31}
                             placeholder="Nombre de la mascota"
-                            className="border-2 w-full p-2 pl-10 mt-2 placeholder-gray-400 rounded-md"
+                            className={`border-2 w-full p-2 pl-10 mt-2 placeholder-gray-400 rounded-md`}
                             value={nombre}
                             onChange={(e) => setNombre(e.target.value)} // Escribe el cambio con la func. modificadora
-
+                            
                         />
+                       
                     </div>
                 </div>
 
@@ -139,6 +179,9 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                         <input
                             id="propietario"
                             type="text"
+                            // required
+                            minLength={2}
+                            maxLength={31}
                             placeholder="Nombre del propietario"
                             className="border-2 w-full p-2 pl-10 mt-2 placeholder-gray-400 rounded-md"
                             value={propietario}
@@ -157,6 +200,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                         <input
                             id="mail"
                             type="email"
+                            // pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                             placeholder="E-mail contacto propietario"
                             className="border-2 w-full p-2 pl-10 mt-2 placeholder-gray-400 rounded-md"
                             value={mail}
@@ -172,6 +216,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                     <input
                         id="alta"
                         type="date"
+                        // required
                         // defaultValue={ Date.now() }
                         min={new Date().toJSON().slice(0, 10)}
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
@@ -191,10 +236,11 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                         min={"10:00"}
                         max={"18:00"}
                         step={"1800"}
+                        // required
                         className=" border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                         onChange={(e) => setHora(e.target.value)}
                     />
-                    <label htmlFor="" className=" text-gray-400"> Horario de 10:00am a 18:00pm ( intervalo 30min. ) </label>
+                    <label className=" text-gray-400"> Horario de 10:00am a 18:00pm ( intervalo 30min. ) </label>
                 </div>
 
                 <div className="mb-5">
@@ -205,6 +251,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                         name=""
                         id="sintomas"
                         maxLength={121}
+                        // required
                         className={`border-2 w-full shadow-lg p-2 mt-2 placeholder-gray-400 rounded-md outline-none
                                     ${sintomas.length > 120 ? "shadow-red-300 && border-red-400" : "border-gray-500"}`
                         }
@@ -214,16 +261,15 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                         onChange={(e) => setSintomas(e.target.value)}
                     />
 
-                    <label htmlFor="" className=" text-gray-400">( Max. 120 caracteres ) </label>
+                    <label className=" text-gray-400">( Max. 120 caracteres ) </label>
 
                 </div>
 
-                <button disabled={!setError}
-                    enabled={ setError}
+                <button 
                     id="botonCita"
                     type="submit"
-                    className={`bg-gray-400 pointer-events-none 
-                             p-3 enabled:bg-indigo-600 hover:bg-indigo-800 enabled:cursor-pointer enabled:transition-colors
+                    className={`
+                             p-3 bg-indigo-600 hover:bg-indigo-800 cursor-pointer enabled:transition-colors
                              w-full text-white uppercase font-bold rounded-lg 
                              
                             `}
@@ -231,22 +277,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
                     {paciente.id ? 'Editar Paciente' : 'Agregar Paciente' }
                     
                 </button>
-                {/* <button disabled
-                        type="submit"
-                        className={`w-full p-3 bg-gray-400 text-white uppercase font-bold rounded-lg pointer-events-none
-                        ${setError == true? "hidden" : "return"}
-                        `}
-                        >
-
-                </button> */}
-                {/* <input
-                    name="botonAgregar"
-                    type="submit"
-                    className={`bg-indigo-600 w-full p-3 text-white uppercase font-bold
-                            hover:bg-indigo-800 cursor-pointer transition-colors rounded-lg`}
-                    value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente' }
-                    
-                /> */}
+ 
 
             </form>
 

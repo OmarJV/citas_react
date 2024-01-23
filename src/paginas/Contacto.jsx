@@ -67,7 +67,7 @@ const Contacto = () => {
               Telefono:
             </p>
             <h2 className=" text-2xl font-light">
-              +1 234-567-890
+            001 (913) 535-6280
             </h2>
           </div>
 
