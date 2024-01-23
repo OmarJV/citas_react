@@ -128,7 +128,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     }
 
     const { msg } = error
-    console.log( ...pacientes);
+    // console.log( ...pacientes);
 
     return (
         <div className="md:w-1/2 lg:w-2/5 mx-3 mb-5">

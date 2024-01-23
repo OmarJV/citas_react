@@ -27,7 +27,7 @@ const Home = () => {
                         </p>
 
                         <div className=" gap-4 py-10">
-                            <Link to={"cita"}>
+                            <Link to="/cita">
                                 <button to="cita" className=" bg-indigo-500 text-white py-3 px-8 rounded-xl text-xl 
                                                 hover:bg-indigo-700 ">
                                     PROGRAMA UNA CITA

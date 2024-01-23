@@ -10,14 +10,14 @@ function App() {
 
   return (
 
-    <BrowserRouter>
+    // <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>} />
         
         <Route path="contacto" element={<Contacto />} />
         <Route path="cita" element={< Cita/>} />
       </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
 
   )
 }

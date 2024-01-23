@@ -26,21 +26,21 @@ function Header() {
                             justify-center gap-12 transition-all duration-400 z-50 `
                         }>
 
-                <Link to={"/"}>
+                <Link to="/">
                 
                     <a className=" text-xl xl:py-1 xl:px-4 rounded-lg hover:underline decoration-indigo-800 transition-colors ml-5 xl:ml-3">
                     <RiHome2Fill className=" absolute text-gray-400 mt-1 "/>
                         HOME
                     </a>
                 </Link>
-                <Link to={"/cita"}>
+                <Link to="/cita">
                     <a className=" text-xl xl:py-1 xl:px-4 rounded-lg hover:underline ml-5 xl:ml-3">
                     <RiPencilFill className=" absolute text-gray-400 mt-1 "/>
                         CITA
                     </a>
                 </Link>
 
-                <Link to={"/contacto"}>
+                <Link to="/contacto">
                     <a className=" text-xl xl:py-1 xl:px-4 rounded-lg hover:underline decoration-indigo-800 ml-5 xl:ml-3">
                     <RiFeedbackFill className=" absolute text-gray-400 mt-1 "/>
 
