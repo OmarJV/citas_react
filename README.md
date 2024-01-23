@@ -24,7 +24,7 @@ Esta elaborado con la biblioteca de JavaScript React y la herramienta de desarro
 - Vite V5.0.8
 - Tailwind CSS V3.4.0
 
-[!NOTA]  
+[!NOTE] 
 Para más información consultar el archivo package.json de este proyecto.
 
 
