@@ -15,7 +15,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     const [error, setError] = useState({});
 
 
-    // DEtecta el state del paciente. Editar y rellenar el form
+    // Detecta el state del paciente. Editar y rellenar el form
     useEffect(() => {
         if (Object.keys(paciente).length > 0) {
             console.log('Si hay paciente');
@@ -37,7 +37,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         return random + fecha;
     }
 
-    // console.log('Nombre:', nombre);
+
      const handleSubmit = (e) => {
     //  const onSubmit = handleSubmit((e) => {
         e.preventDefault();
@@ -77,14 +77,25 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             })
             return;
         }
-     
-        console.log( paciente.hora, paciente.alta); //Fecha y hora agregada
+
+     // Funcion fecha y hora cupada
+         var horaNoDisponible = pacientes.findIndex( (objeto) => objeto.hora === hora );
+         var diaNoDisponible = pacientes.findIndex( (objeto) => objeto.alta === alta );
 
 
+        //  console.log( horaNoDisponible, diaNoDisponible );
+    
+        if( horaNoDisponible >= 0 && diaNoDisponible >= 0){            
+            setError({
+                msg: 'La fecha y hora no se encuentran disponibles ',     
+                err: true,
+            })
+            return;
+        }
+        
         console.log('Todos los campos llenos');
         setError(false);
-
-
+        
 
         // Objeto de Pacientes
         const objetoPaciente = {
@@ -114,8 +125,6 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             setPacientes([...pacientes, objetoPaciente]);
         }
 
-
-
         //Reiniciar el form
 
         setNombre('');
@@ -128,7 +137,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
     }
 
     const { msg } = error
-    // console.log( ...pacientes);
+
 
     return (
         <div className="md:w-1/2 lg:w-2/5 mx-3 mb-5">
