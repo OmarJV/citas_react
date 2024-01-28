@@ -6,7 +6,9 @@ import {RiCloseCircleLine,
         RiArrowRightSFill } from "react-icons/ri";
 
 
-const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
+const Paciente = ({ paciente, setPaciente, eliminarPaciente, setAdmin}) => {
+
+  console.log(setAdmin);
 
   const { nombre, propietario, mail, alta, hora, sintomas, id } = paciente
 
@@ -26,7 +28,7 @@ const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
 
   return (
 
-    <div className="bg-white rounded-3xl p-2 shadow-xl mx-10 mb-5 xl:mx-40 xl:h-60">
+    <div className="bg-white rounded-3xl p-2 shadow-xl mx-10 mb-5 xl:mx-36">
 
       <div className="flex justify-between mb-8 p-3 grid-cols-1 xl:grid-cols-8">
         <div className=" md:col-span-6 flex-row flex gap-4">
@@ -35,8 +37,11 @@ const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
           </span>
 
           <div >
-            <h3 className="font-medium"> {nombre} </h3>
-            <div className=" ">
+            <h3 className={` ${setAdmin? "text-2xl font-medium":" text-xl font-medium"}`}> 
+              {nombre} 
+            </h3>
+
+            <div className={`${setAdmin? "hidden":" "}`}>
               <p className="text-sm text-neutral-500 ">
                 {sintomas}
               </p>
@@ -59,30 +64,42 @@ const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
 
 
       <div className="flex flex-col md:flex-row xl:flex-row items-center justify-between gap-8 mb-2 px-4">
-        <div className="flex flex-row items-center gap-2 text-neutral-500 ">
+        
+        <div className={`flex flex-row items-center gap-2 text-neutral-500
+                      ${setAdmin? "hidden":""}`
+          }>
           <RiUser3Fill
             className="rounded-full object-cover"
           />
           <h5 className="text-neutral-500"> {propietario} </h5>
         </div>
+
         <div className="flex flex-row items-center gap-2 text-neutral-500">
           <RiCalendarCheckFill  />
           <h5 className="text-neutral-600"> {alta} </h5>
         </div>
-        <div className="flex flex-row items-center gap-2 text-neutral-500 xl:inline-flex md:hidden">
+
+        <div className={`flex flex-row items-center gap-2 text-neutral-500 xl:inline-flex md:hidden 
+                        ${ setAdmin? "hidden xl:hidden":"" }`                
+          }>
           <RiMailFill  />
           <h5>{mail}</h5>
         </div>
+
       </div>
-      <div className="flex items-center justify-between bg-gray-100 p-4 rounded-2xl">
-        <h2 className="text-xl font-medium"> {hora} {" "} {fHOra} </h2>
-        <button
-          type="button"
-          className="flex items-center gap-2 p-2 rounded-lg hover:bg-white transition-colors"
-          onClick={() => setPaciente(paciente)}
-        >
-          Editar <RiArrowRightSFill  />
-        </button>
+      <div className={`flex items-center  bg-gray-100 p-4 rounded-2xl 
+                      ${setAdmin ? "justify-center" : "justify-between"}`
+      }>
+        <h2 className="text-xl font-medium "> {hora} {" "} {fHOra} </h2>
+        <div className={`${setAdmin? "hidden":""}`}>
+          <button
+            type="button"
+            className="flex items-center gap-2 p-2 rounded-lg hover:bg-white transition-colors"
+            onClick={() => setPaciente(paciente)}
+          >
+            Editar <RiArrowRightSFill />
+          </button>
+        </div>
 
       </div>
 

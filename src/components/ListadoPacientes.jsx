@@ -1,7 +1,7 @@
 import Paciente from "./Paciente"
 
 
-const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => {
+const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente, setAdmin }) => {
 
   console.log(pacientes);
 
@@ -25,6 +25,7 @@ const ListadoPacientes = ({ pacientes, setPaciente, eliminarPaciente }) => {
                 paciente={paciente}
                 setPaciente={setPaciente}
                 eliminarPaciente={eliminarPaciente}
+                setAdmin={setAdmin}
               />
 
             )

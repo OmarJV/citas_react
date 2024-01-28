@@ -22,15 +22,15 @@ const Contacto = () => {
       <div className="container mx-auto mt-16">
         <Header />
 
-        <button className=" absolute left-8 xl:left-56 xl:top-44 top-36 cursor-pointer border 
+        <button className=" ml-8 mt-5 left-8 xl:left-56 xl:top-44 top-36 cursor-pointer border 
                     border-gray-900 p-2 rounded-lg 
-                    text-gray-900 hover:translate-x-1 transition-all duration-200
+                    text-gray-900 hover:translate-x-1 transition-all duration-100
                     hover:border-y-4 hover:border-x-4 "
           onClick={() => navigate(-1)}>
           <RiArrowLeftDoubleLine />
         </button>
 
-        <div className=" mt-12">
+        <div className=" mt-10">
 
 
 
@@ -57,7 +57,7 @@ const Contacto = () => {
             <p className=" text-gray-500 text-2xl leading-[3rem] text-justify font-bold " >
               Dirección:
             </p>
-            <p className=" text-2xl font-light ">
+            <p className=" text-xl xl:text-2xl font-light ">
               Ciudad de México, México
             </p>
           </div>
@@ -66,7 +66,7 @@ const Contacto = () => {
             <p className=" text-gray-500 text-2xl leading-[3rem] text-justify font-bold " >
               Telefono:
             </p>
-            <h2 className=" text-2xl font-light">
+            <h2 className=" text-xl xl:text-2xl font-light">
             001 (913) 535-6280
             </h2>
           </div>
@@ -76,7 +76,7 @@ const Contacto = () => {
             <p className=" text-gray-500 text-2xl leading-[3rem] text-justify font-bold " >
               Horarios:
             </p>
-            <h2 className=" text-2xl font-light">
+            <h2 className=" text-xl xl:text-2xl font-light">
               10:00 am - 18 pm {'(Lunes a Viernes)'}
             </h2>
           </div>
