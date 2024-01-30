@@ -65,7 +65,7 @@ const Cita = ( ) => {
                                 ${admin ? "bg-gray-400" : "bg-gray-600"}`}>
 
                                 <span className={` h-8 w-8 bg-indigo-500 rounded-full transition-all duration-500
-                                        shadow-lg ${admin ? " ml-8" : ""} ${console.log('CITA:', admin)}`} />
+                                        shadow-lg ${admin ? " ml-8" : ""} ${console.log()}`} />
                             </div>
                         </div>
                         <h2 className=" mr-6"> USER</h2>

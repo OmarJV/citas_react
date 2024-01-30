@@ -24,7 +24,7 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             setMail(paciente.mail);
             setAlta(paciente.alta);
             setHora(paciente.hora);
-            setSintomas(paciente.sintomas);
+            setSintomas(paciente.sintomas);         
         }
     }, [paciente])
 
@@ -105,16 +105,15 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
             alta,
             hora,
             sintomas,
-
         }
 
         if (paciente.id) {
             //Editando Registro
             objetoPaciente.id = paciente.id
             console.log(objetoPaciente);        //Nuevo y actualizado
-            console.log(paciente);          //Versión antes de actaualizar
+            console.log(paciente);          //Versión antes de actaualizar, presionada
             const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id ===
-                paciente.id ? objetoPaciente : pacienteState)
+                paciente.id ? (objetoPaciente) : (pacienteState))
 
             setPacientes(pacientesActualizados)
             setPaciente({});
@@ -126,7 +125,6 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
         }
 
         //Reiniciar el form
-
         setNombre('');
         setPropietario('');
         setMail('');

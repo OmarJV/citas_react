@@ -8,7 +8,7 @@ import {RiCloseCircleLine,
 
 const Paciente = ({ paciente, setPaciente, eliminarPaciente, setAdmin}) => {
 
-  console.log(setAdmin);
+  // console.log(setAdmin);
 
   const { nombre, propietario, mail, alta, hora, sintomas, id } = paciente
 
